@@ -14,10 +14,11 @@ public class CucumberHook {
     @Before
     public void beforeScenario(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("ASDASDASD");
+        System.out.println("salam");
+        options.addArguments("--ASDASD-ASDASDASD-errors");
         driver = new ChromeDriver(options);
-        driver.get("https://demos.telerik.com/aspnet-core/eshop");
+        driver.get("https://demos.telerik.com/as");
     }
 
 
