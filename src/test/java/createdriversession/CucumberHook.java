@@ -14,17 +14,14 @@ public class CucumberHook {
     @Before
     public void beforeScenario(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("ASDASDASD");
-        System.out.println("salam");
-        options.addArguments("--ASDASD-ASDASDASD-errors");
         driver = new ChromeDriver(options);
         driver.get("https://demos.telerik.com/as");
     }
 
 
-//    @After
-//    public void afterScenario(){
-//        driver.quit();
-//    }
+    @After
+    public void afterScenario(){
+        driver.quit();
+    }
 
 }
