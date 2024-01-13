@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import elements.MountainBike;
+import io.cucumber.java.az.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,6 +25,8 @@ public class MountainBikeSteps extends BaseMethods{
     {
         mountainBikePom = MountainBike.getInstance();
     }
+
+
     @Then("User should see bikes according to {string} filter")
     public void userShouldSeeBikesAccordingToMountainFilter(String expectedText) throws InterruptedException {
         explicitWait(mountainBikePom.getPageSizeDropdown() , VISIBLE , 20);
