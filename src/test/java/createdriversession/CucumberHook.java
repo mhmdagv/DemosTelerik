@@ -15,7 +15,7 @@ public class CucumberHook {
     public void beforeScenario(){
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
-        driver.get("https://demos.telerik.com/as");
+        driver.get("https://demos.telerik.com/aspnet-core/eshop/Account/Login");
     }
 
 
