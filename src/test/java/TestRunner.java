@@ -4,8 +4,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 @CucumberOptions(
-        features = "classpath:features",
-        tags = "@fastfingers"
+        features = "classpath:features"
+
+
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 

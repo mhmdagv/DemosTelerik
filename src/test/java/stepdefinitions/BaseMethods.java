@@ -16,11 +16,9 @@ public class BaseMethods {
     WebDriverWait wait;
     private Actions actions;
 
-    protected WebDriver driver;
+    public WebDriver driver = CucumberHook.driver;
 
-    {
-        driver = CucumberHook.driver;
-    }
+
 
     protected Actions getActions(){
         if(actions == null){
