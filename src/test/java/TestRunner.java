@@ -5,8 +5,6 @@ import org.testng.annotations.BeforeClass;
 
 @CucumberOptions(
         features = "classpath:features"
-
-
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
