@@ -1,11 +1,21 @@
+import io.cucumber.java.AfterAll;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import net.masterthought.cucumber.Configuration;
+import net.masterthought.cucumber.ReportBuilder;
+import net.masterthought.cucumber.presentation.PresentationMode;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @CucumberOptions(
         features = "classpath:features",
-        tags = "@modelShorts"
+        plugin = {"pretty", "json:target/cucumber.json"}
+
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
@@ -14,9 +24,15 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         System.out.println("TEST BASLADI");
     }
 
-    @AfterClass
-    public void afterClass(){
-        System.out.println("TEST BITDI");
+    @AfterTest
+    public void afterTest(){
+        File reportOutputDirectory = new File("target");
+        List<String> jsonFiles = new ArrayList<>();
+        jsonFiles.add("target/cucumber.json");
+        Configuration configuration = new Configuration(reportOutputDirectory, "DemosTelerik");
+        configuration.addPresentationModes(PresentationMode.EXPAND_ALL_STEPS);
+        ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
+        reportBuilder.generateReports();
     }
 
 }
