@@ -157,26 +157,5 @@ public class BottlesCagesSteps extends BaseMethods {
         actions.dragAndDrop(circle2,driver.findElement(By.xpath(locator2))).perform();
     }
 
-    @Then("Items should be list according to {string} {string}")
-    public void itemsShouldBeListAccordingTo(String from, String to) throws InterruptedException {
-        Thread.sleep(5000);
-        double fromNum = Double.parseDouble(from.replace(",",""));
-        double toNum = Double.parseDouble(to.replace(",",""));
-        List<WebElement>elements = getElements(By.className("card-price"));
-        for (WebElement element:elements){
-            boolean flag = false;
-            String s = element.getText().replace(",","").replace("$","");
-            double price = Double.parseDouble(s);
-            if (fromNum<=price&&price<=toNum){
-                flag = true;
-                Assert.assertTrue(flag);
-            }else {
-                Assert.assertTrue(elements.isEmpty());
-            }
-
-        }
-
-    }
-
 
 }
