@@ -29,11 +29,10 @@ public class MountainBikeSteps extends BaseMethods{
 
     @Then("User should see bikes according to {string} filter")
     public void userShouldSeeBikesAccordingToMountainFilter(String expectedText) throws InterruptedException {
+        Thread.sleep(5000);
         explicitWait(mountainBikePom.getPageSizeDropdown() , VISIBLE , 20);
         getElement(mountainBikePom.getPageSizeDropdown()).click();
-        Thread.sleep(1000);
         getJsExecutor().executeScript("arguments[0].click();", getElement(mountainBikePom.getPageSize48Option()));
-        Thread.sleep(2000);
         String[] array = expectedText.split("&");
         List<WebElement> elements = getElements(mountainBikePom.getInventoryElements());
         for(WebElement element: elements){
@@ -45,8 +44,6 @@ public class MountainBikeSteps extends BaseMethods{
             }
             Assert.assertTrue(flag2);
         }
-
-
     }
 
     @And("Clicks bike category")
@@ -60,12 +57,14 @@ public class MountainBikeSteps extends BaseMethods{
         getElement(mountainBikePom.getMountainBikeCategory()).click();
     }
 
-    @And("Clicks {string} filter checkbox")
-    public void clicksMountainFilterCheckbox(String s) throws InterruptedException {
+    @And("Clicks {string} {string} filter checkbox")
+    public void clicksMountainFilterCheckbox(String s, String locator) throws InterruptedException {
         String[] array = s.split("&");
-        explicitWait(mountainBikePom.getModelCheckboxes() , VISIBLE , 20);
-        List<WebElement> list = getElements(mountainBikePom.getModelCheckboxes());
-        System.out.println(list.size());//mountain-100
+        String filter="//*[@id='" + locator + "Picker']//li";
+        By clicksFilter=By.xpath(filter);
+        explicitWait(clicksFilter , VISIBLE , 20);
+        List<WebElement> list = getElements(clicksFilter);
+        System.out.println(list.size());
         for(WebElement element: list){
             for(int i = 0; i<array.length; i++){
                 if(element.getText().equalsIgnoreCase(array[i])){
@@ -146,4 +145,27 @@ public class MountainBikeSteps extends BaseMethods{
             input.sendKeys(text);
         }
     }
-}
+
+    @Given("User is in {string} website")
+    public void userIsInWebsite(String arg0) {
+    }
+
+    @Then("User should see bikes according to {string} filters")
+    public void userShouldSeeBikesAccordingToFilters(String rate) throws InterruptedException {
+        Thread.sleep(3000);
+        String[] s=rate.split("&");
+        List<WebElement> elements = getElements(mountainBikePom.getRateText());
+        for(WebElement element: elements){
+            System.out.println(element.getText() + "_______________");
+            boolean flag = false;
+            for(String a:s){
+                if(element.getText().contains(a)){
+                    flag=true;
+                }
+            }
+            Assert.assertTrue(flag);
+
+        }
+    }
+    }
+
