@@ -55,3 +55,11 @@ Feature: Shorts Clothes
     When User choose price interval from "<from>" "<to>"
     Then Items should be list according to "<from>" "<to>"
     Examples:
+      | from  | to    |  |
+      | 0     | 500   |  |
+      | 500   | 1,000 |  |
+      | 1,000 | 1,500 |  |
+      | 1,500 | 2,000 |  |
+      | 2,000 | 2,500 |  |
+      | 2,500 | 3,000 |  |
+      | 3,500 | 4,000 |  |
