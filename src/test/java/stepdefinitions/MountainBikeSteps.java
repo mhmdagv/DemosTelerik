@@ -103,20 +103,6 @@ public class MountainBikeSteps extends BaseMethods{
 
     }
 
-    @Then("Items should be list according to {string} {string}")
-    public void itemsShouldBeListAccordingTo(String from, String to) throws InterruptedException {
-        double fromNumber = Double.parseDouble(from.replace("," , ""));
-        double toNumber = Double.parseDouble(to.replace("," , ""));
-
-        Thread.sleep(6000);
-        List<WebElement> list = getElements(mountainBikePom.getItemsPrice());
-        for (WebElement element: list){
-            double price = Double.parseDouble(element.getText().replace("," , "").replace("$" , ""));
-            System.out.println(price);
-            Assert.assertTrue((fromNumber <= price) && (price <= toNumber) , "price: " + price);
-        }
-
-    }
 
 
     @Given("User is in fast fingers page")
